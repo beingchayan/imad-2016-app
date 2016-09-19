@@ -5,17 +5,39 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
-var articleOne = {
-    title: 'Article One | Chayan',
-    heading: 'Article One',
-    date: 'September 19,2016',
-    content: ` <p>
-                    This is the content of my article.
-                </p>
-                <p>
-                    In a  step-by-step initiatic process, coordinated and orchestrated by the Higher Self of the soul under the cosmic beings and Ascended Masters who govern the destiny of earth, the soul rises to the heart and merges with the Higher Self. The consciousness that has awareness as the spiritual self, while yet existing in the world, begins the path of Being the Mother. This path is equally difficult to Being the Christ. Like the mass consciousness of the world against the Christ, so too is the mass consciousness against the Mother. The world has raised up the Great Whore image of Mother as the perfect expression of nurturance. When the true Mother Light shines forth to defend truth and Being, bringing compassion, mercy and judgment, her Being is rejected and condemned by the ungodly.
-                </p>`
-    };
+var articles = 
+{
+                  'article-one' : {
+                                title: 'Article One | Chayan',
+                                heading: 'Article One',
+                                date: 'September 19,2016',
+                                content: ` <p>
+                                                This is the content of my article.
+                                            </p>
+                                            <p>
+                                                In a  step-by-step initiatic process, coordinated and orchestrated by the Higher Self of the soul under the cosmic beings and Ascended Masters who govern the destiny of earth, the soul rises to the heart and merges with the Higher Self. The consciousness that has awareness as the spiritual self, while yet existing in the world, begins the path of Being the Mother. This path is equally difficult to Being the Christ. Like the mass consciousness of the world against the Christ, so too is the mass consciousness against the Mother. The world has raised up the Great Whore image of Mother as the perfect expression of nurturance. When the true Mother Light shines forth to defend truth and Being, bringing compassion, mercy and judgment, her Being is rejected and condemned by the ungodly.
+                                            </p>`},
+                
+                'article-two' : {   title: 'Article Two | Chayan',
+                                heading: 'Article Two',
+                                date: 'September 20,2016',
+                                content: ` <p>
+                                                This is the content of my article.
+                                            </p>
+                                            <p>
+                                                In a  step-by-step initiatic process, coordinated and orchestrated by the Higher Self of the soul under the cosmic beings and Ascended Masters who govern the destiny of earth, the soul rises to the heart and merges with the Higher Self. The consciousness that has awareness as the spiritual self, while yet existing in the world, begins the path of Being the Mother. 
+                                            </p> `},
+                                            
+                'article-three' : {      title: 'Article Three | Chayan',
+                                heading: 'Article Three',
+                                date: 'September 21,2016',
+                                content: ` <p>
+                                                This is the content of my article.
+                                            </p>
+                                            <p>
+                                                This path is equally difficult to Being the Christ. Like the mass consciousness of the world against the Christ, so too is the mass consciousness against the Mother. The world has raised up the Great Whore image of Mother as the perfect expression of nurturance. When the true Mother Light shines forth to defend truth and Being, bringing compassion, mercy and judgment, her Being is rejected and condemned by the ungodly.
+                                            </p> `}
+};                
 
 
 function createTemplate(data)
@@ -62,16 +84,13 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/article-one', function(req,res) { 
-   res.send(createTemplate(articleOne));
-});
-
-app.get('/article-two', function(req,res) { 
-  res.sendFile(path.join(__dirname, 'ui', 'article-two.html')); 
-});
-
-app.get('/article-three', function(req,res) { 
-   res.sendFile(path.join(__dirname, 'ui', 'article-three.html')); 
+app.get('/:articleName', function(req,res) { 
+    
+    var articleName = req.params.articleName;
+    
+    // :articleName = article-one here for URL. Provided by the express framework.
+    
+   res.send(createTemplate(articles[articleName]));
 });
 
 
