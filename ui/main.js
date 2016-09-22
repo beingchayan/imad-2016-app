@@ -8,10 +8,10 @@ var element = document.getElementById('main-text');
 var img = document.getElementById('madi');
 var marginR = 0;
 function moveLeft() {
-    marginR = marginR +  10;
+    marginR = marginR +  5;
     img.style.marginRight = marginR + 'px';
 }
 img.onclick =  function () {
-    var interval = setInterval(moveLeft,100);
+    var interval = setInterval(moveLeft,50);
     
 }
