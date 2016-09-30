@@ -27,6 +27,33 @@ button.onclick = function () {
 
 };
 
+//Submit name
+
+var nameInp = document.getElementById('name');
+var name = nameInp.value;
+var submit = document.getElementById('submit_btn');
+
+submit.onclick = function () {
+    //Make request to the server and tsend the name
+    
+    //Capturea a list of names and render it as a list
+    var names = ['name1','name2','name3','name4'];
+    var list = '';
+    for (var i=0;i<names.length;i++)
+    {
+        list += '<li>' + names[i] + '</li>'; 
+    }
+    var ul = document.getElementById('namelist');
+    ul.innerHTML=list;
+    
+    
+};
+
+
+
+
+
+
 /*
 console.log('Loaded!');
 
