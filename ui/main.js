@@ -58,10 +58,12 @@ submit.onclick = function () {
   }; 
 
  //Make the request
+ var nameInp = document.getElementById('name');
+var name = nameInp.value;
+    
    request.open('GET','http://beingchayan.imad.hasura-app.io/submit-name?name='+name, true);
    request.send(null);
 
-    
     //Capture a list of names and render it as a list
     
     
